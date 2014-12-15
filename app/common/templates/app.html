@@ -1,0 +1,146 @@
+<!--
+<div class="app_view">
+	<div class="sidebar">
+		<div class="head">
+			<div class="logo">
+				<h2>AlienStream</h2>
+				<h4 style="margin-top:0px;">Crowd Sourced Music</h4>
+			</div>
+		</div>
+		<div>
+			<ul>
+				<li>Discover</li>
+				<li>My Communities</li>
+				<li>My Favorites</li>
+			</ul>
+		</div>
+		<div class="player" ng-controller="PlayerCtrl">
+			<div class="player_holder">
+				<youtube> </youtube>
+				<soundcloud> </soundcloud>
+			</div> 
+			<div class="track_info">
+				<div style="font-size:15px;" id="song_title" class="heading">{{AlienPlayer.current_track.Title}}</div>	
+				<span id="artist"><a target="_blank" href="{{AlienPlayer.current_track.Permalink}}">{{AlienPlayer.current_track.Artist}}</a></span>
+			</div>
+			<div class="controls">
+				<controls></controls>
+			</div>
+		</div>
+		
+	</div>
+	<div class="top_menu">
+		<ul>
+			<li class="active"><a>Now Playing</a></li>
+			<li><a>My Account</a></li>
+			<li><a>Settings</a></li>
+		</ul>
+	</div>
+	<div class="main" ng-controller="PlayerCtrl">
+		
+			<ul class="content_selector">
+				<li class="active"><a>Trending</a></li>
+				<li><a>Most Favorited</a></li>
+				<li><a>My Recommendations</a></li> 
+				<li><a>Comments</a></li>
+			</ul>
+	
+		<div class="content" ui-view="content">
+
+		</div>
+	</div>
+</div>
+
+	-->
+
+<div class="header">
+    <div class="top_bar">
+        <div style="text-align:center;" class="brand bar left_bar">
+            <h2>AlienStream</h2>
+        </div>
+        <div class="search center_content">
+        	<div class="input-group">
+              <input type="text" class="form-control" placeholder="Find The Music You Love...">         
+              <span class="input-group-addon"><i class="fa fa-search"></i></span>  
+            </div>
+        </div>
+        <div class="bar right_bar">
+        	<div class="account_info" style="padding:0px 10px;">
+        		<h2 style="display:inline-block;margin:0px;float:left;">Login</h2>
+	            <div style="width:50px;padding:10px;float:right;">
+					<a style="cursor:pointer;">
+						<span style="padding:10px;" class="fa-large fa fa-user"></span>
+					</a>
+				</div>
+				<div style="width:40px;padding:10px;float:right;">
+					<a style="cursor:pointer;">
+						<span style="padding:10px;" class="fa-large fa fa-cogs"></span>
+					</a>
+				</div>
+			</div>
+        </div>
+    </div>
+    <div class="banner" ng-controller="PlayerCtrl">
+        <div class="bar left_bar">
+        </div>
+
+        <div class="track_info center_content">
+            <h3 class="title">{{AlienPlayer.current_track.Title}}</h3>
+            <h4 class="description">{{AlienPlayer.current_track.Artist}}</h4>
+        </div>
+
+        <div class="bar right_bar">
+        </div>
+
+        <div class="controls">
+            <controls></controls>
+        </div>
+    </div>
+</div>
+<div class="app_view">
+    <div class="bar left_bar">
+        <h2 class="menu_title">Menu</h2>
+        <ul class="bar_menu">
+            <li><a ui-sref="app.explore">Discover</a></li>
+            <li><a ui-sref="app.mycommunities">My Communities</a></li>
+            <li><a ui-sref="app.myfavorites">My Favorites</a></li>
+        </ul>
+    </div>
+    <div class="center_content" ui-view="content">
+        
+    </div>
+    <div class="bar right_bar">
+        <div class="player" ng-controller="PlayerCtrl">
+            <div class="player_holder">
+                <youtube> </youtube>
+                <soundcloud> </soundcloud>
+            </div>
+            <div class="up_next">
+                <h2 class="menu_title">Up Next</h2>
+                <ul class="tracklist bar_menu">
+                    <li class="snippet" ng-repeat="track in AlienPlayer.playlist | limitTo:3">
+                        <img src="{{thumbnail(track.Thumbnail)}}">
+                        <div class="info">
+                            <h3 class="title">{{track.Title}}</h3>
+                            <h4 class="description">{{track.Artist}}</h4>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="expandable current_community" ng-controller="CommunityCtrl">
+                <ul>
+                    <li class="snippet">
+                        <img src="http://albumartcollection.com/wp-content/uploads/2011/07/summer-album-art.jpg">
+                        <div class="info">
+                            <h3 class="title">Now Playing</h3>
+                            <h4 class="description">{{community.Name}}</h4>
+                            <button class="expand"><i class="fa fa-angle-up" ngclick="expand"></i>
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>

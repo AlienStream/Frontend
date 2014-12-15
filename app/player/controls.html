@@ -1,0 +1,49 @@
+<div class="player_controls bar left_bar">
+	<div style="text-align:center;margin:auto;">
+		<a style="cursor:pointer;" ng-click="AlienPlayer.prev()">
+			<span style="padding:10px;" class="fa fa-large fa-backward"></span>
+		</a>
+		<a style="color:white;cursor:pointer;" ng-hide="AlienPlayer.isPlaying()" ng-click="AlienPlayer.play()">
+			<span style="padding:10px;" class="fa fa-large fa-play"></span>
+		</a>
+		<a style="cursor:pointer;" ng-show="AlienPlayer.isPlaying()" ng-click="AlienPlayer.pause()">
+			<span style="padding:10px;" class="fa fa-large fa-pause"></span>
+		</a>
+		<a style="cursor:pointer;" ng-click="AlienPlayer.next()">
+			<span style="padding:10px;" class="fa fa-large fa-forward"></span>
+		</a>
+	</div>
+</div>
+
+<div class="center_content">
+	<div class="progress" style="width:100%;height:2px;margin:15px 0px;">
+		<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%;height:2px;"></div>
+	</div>
+</div>
+
+<div class="player_controls bar right_bar">
+	<div style="width:50px;float:left;">
+		<a style="cursor:pointer;margin:0px 15px;">
+			<span style="padding:10px;" class="fa-large fa fa-volume-up"></span>
+		</a>
+	</div>
+	<div class="progress" style="width:50px;height:2px;margin:15px 0px;float:left;">
+		<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;height:2px;"></div>
+	</div>
+	<div style="width:30px;float:left;margin-left:20px;">
+		<a style="cursor:pointer;">
+			<span style="padding:10px;" class="fa-large fa fa-thumbs-o-up"></span>
+		</a>
+	</div>
+	<div style="width:30px;float:left;">
+		<a style="cursor:pointer;">
+			<span style="padding:10px;" class="fa-large fa fa-thumbs-o-down"></span>
+		</a>
+	</div>
+	<div style="margin-left:5px;width:20px;float:left;">
+		<a style="cursor:pointer;">
+			<span style="padding:10px 20px;" class="fa-large fa fa-share-alt"></span>
+		</a>
+	</div>
+
+</div>

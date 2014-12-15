@@ -1,0 +1,56 @@
+<h3 class="content_title">Create A Community</h3>
+<navback></navback>
+<form class="form-horizontal">
+
+    <!-- Name input-->
+    <div class="form-group">
+        <label class="col-md-3 control-label" for="name">Name</label>
+        <div class="col-md-9">
+            <input id="name" name="name" type="text" placeholder="Community Name" class="form-control" ng-model="name">
+        </div>
+    </div> 
+
+    <!-- Message body -->
+    <div class="form-group">
+        <label class="col-md-3 control-label" for="message">Description</label>
+        <div class="col-md-9">
+            <textarea class="form-control" id="message" name="message" placeholder="Please enter your message here..." rows="5" ng-model="description"></textarea>
+        </div>
+    </div>
+
+    <!-- Name input-->
+    <div class="form-group">
+        <label class="col-md-3 control-label" for="name">Thumbnail</label>
+        <div class="col-md-9">
+            <input id="name" name="name" type="text" placeholder="An Image Url" class="form-control" ng-model="thumbnail">
+        </div>
+    </div> 
+
+	<!-- Name input-->
+    <div class="form-group">
+        <label class="col-md-3 control-label" for="name">Moderator</label>
+        <div class="col-md-9">
+            <input id="name" name="name" type="text" placeholder="Your name" class="form-control" ng-model="moderator">
+        </div>
+    </div> 
+
+
+    <!-- Name input-->
+    <div class="form-group">
+        <label class="col-md-3 control-label" for="name">Sources</label>
+        <div class="col-md-9">
+            <input id="name" name="name" type="text" placeholder="One Source" class="form-control" ng-model="source">
+        </div>
+    </div> 
+
+
+
+    <!-- Form actions -->
+    <div class="form-group">
+        <div class="col-md-12 text-right">
+            <button class="btn btn-primary btn-lg" ng-click="CreateCommunity()">Submit</button>
+        </div>
+    </div>
+</form>
+
+
