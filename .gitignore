@@ -1,6 +1,7 @@
 node_modules
 public
 .tmp
+.idea
 .sass-cache
 ._.DS_Store
 .DS_Store
