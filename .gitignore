@@ -1,5 +1,5 @@
 node_modules
-public_html
+public
 .tmp
 .sass-cache
 ._.DS_Store
