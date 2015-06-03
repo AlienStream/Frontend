@@ -32,14 +32,18 @@ angular.module('alienstreamApp')
 			SoundCloud.widget.pause()
 		}
 
+		SoundCloud.Pause = function() {
+			SoundCloud.widget.pause()
+		}
+
 	  	SoundCloud.init();
 	  	
 	  	scope.$watch("AlienPlayer.current_track",function(track){
 	  		if(track.state == "waiting") {
-	  			if(track.Providers && track.Providers[0].URL.indexOf("soundcloud.com") > -1) {
+	  			if(track.embeddable && track.embeddable.url.indexOf("soundcloud.com") > -1) {
 	  				$(element).show()
 	  				track.state = "loading";
-	  				SoundCloud.getEmbed(track.Providers[0].URL).then(function(result) {
+	  				SoundCloud.getEmbed(track.embeddable.url).then(function(result) {
 	  					if(result == null) {
 	  						track.state = "failed"
 	  						scope.$apply()
@@ -61,14 +65,14 @@ angular.module('alienstreamApp')
 	  			}
 	      	} else {
 	  				$(element).hide()
-	  				if(track.Providers && track.Providers[0].URL.indexOf("soundcloud.com") == -1) {
+	  				if(track.embeddable && track.embeddable.url.indexOf("soundcloud.com") == -1) {
 	  					SoundCloud.Stop()
 	  				}
 	  		}
 	  	})
 
 		setInterval(function(){
-			if(scope.AlienPlayer.current_track.Providers && scope.AlienPlayer.current_track.Providers[0].URL.indexOf("soundcloud.com") > -1) {
+			if(scope.AlienPlayer.current_track.embeddable && scope.AlienPlayer.current_track.embeddable.url.indexOf("soundcloud.com") > -1) {
 				var duration = SoundCloud.widget.getDuration(function(duration){
 					SoundCloud.widget.getPosition(function(current_time){
 						if(duration == 0) {

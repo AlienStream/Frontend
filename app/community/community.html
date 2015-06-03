@@ -1,13 +1,13 @@
 <div class="community_header">
 	<div class="info">
-		<img class="image" src="{{community.Thumbnail}}">
-		<h3 class="title">{{community.Name}}</h3>
-		<h4 clsss="description">{{community.Description}}</h4>
+		<img class="image" src="{{community.thumbnail}}">
+		<h3 class="title">{{community.name}}</h3>
+		<h4 clsss="description">{{community.description}}</h4>
 
 		<select ng-init="playersort = AlienPlayer.sorts[2]" ng-model="playersort" ng-options = "sort.title for sort in AlienPlayer.sorts">
 		</select>
 
-		<button class="btn btn-primary" ng-click="AlienPlayer.load(community.Name,playersort.val)">
+		<button class="btn btn-primary" ng-click="AlienPlayer.load(community.name,playersort.val)">
 			Play Community
 		</button>
 	</div>
@@ -17,15 +17,15 @@
 </div>
 
 <div class="community_tracks">
-	<div class="track"  ng-repeat="track in community.Tracks | orderBy:FavoriteCount">
+	<div class="track"  ng-repeat="track in community.Tracks | orderBy:rank">
 		<div class="col-sm-2">
 				<span>{{$index}}</span>
 		</div>
 		<div class="col-sm-6">
-				<span>{{track.Title}}</span>
+				<span>{{track.title}}</span>
 		</div>
 		<div class="col-sm-4">
-				<a href="{{track.Providers[0].Permalink}}" target="_blank">go to source</a>
+			{{track.embeddable.type}}
 		</div>
 	</div>
 </div>

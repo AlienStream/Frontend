@@ -81,12 +81,16 @@
         </div>
     </div>
     <div class="banner" ng-controller="PlayerCtrl">
-        <div class="bar left_bar">
+        <div class="player bar left_bar">
+            <div class="player_holder">
+                <youtube> </youtube>
+                <soundcloud> </soundcloud>
+            </div>
         </div>
 
         <div class="track_info center_content">
-            <h3 class="title">{{AlienPlayer.current_track.Title}}</h3>
-            <h4 class="description">{{AlienPlayer.current_track.Artist}}</h4>
+            <h3 class="title">{{AlienPlayer.current_track.title}}</h3>
+            <h4 class="description">{{AlienPlayer.current_track.channel.artist.name}}</h4>
         </div>
 
         <div class="bar right_bar">
@@ -110,19 +114,15 @@
         
     </div>
     <div class="bar right_bar">
-        <div class="player" ng-controller="PlayerCtrl">
-            <div class="player_holder">
-                <youtube> </youtube>
-                <soundcloud> </soundcloud>
-            </div>
+        <div ng-controller="PlayerCtrl">
             <div class="up_next">
                 <h2 class="menu_title">Up Next</h2>
                 <ul class="tracklist bar_menu">
                     <li class="snippet" ng-repeat="track in AlienPlayer.playlist | limitTo:3">
-                        <img src="{{thumbnail(track.Thumbnail)}}">
+                        <img src="{{thumbnail(track.thumbnail)}}">
                         <div class="info">
-                            <h3 class="title">{{track.Title}}</h3>
-                            <h4 class="description">{{track.Artist}}</h4>
+                            <h3 class="title">{{track.title}}</h3>
+                            <h4 class="description">{{track.artist}}</h4>
                         </div>
                     </li>
                 </ul>
@@ -130,10 +130,10 @@
             <div class="expandable current_community" ng-controller="CommunityCtrl">
                 <ul>
                     <li class="snippet">
-                        <img src="http://albumartcollection.com/wp-content/uploads/2011/07/summer-album-art.jpg">
+                        <img src="{{community.thumbnail}}">
                         <div class="info">
                             <h3 class="title">Now Playing</h3>
-                            <h4 class="description">{{community.Name}}</h4>
+                            <h4 class="description">{{community.name}}</h4>
                             <button class="expand"><i class="fa fa-angle-up" ngclick="expand"></i>
                             </button>
                         </div>

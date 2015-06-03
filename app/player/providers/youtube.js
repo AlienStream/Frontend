@@ -36,26 +36,39 @@ angular.module('alienstreamApp')
 			  	}
 	  	})
 
+		scope.$watch("AlienPlayer.current_track.state", function(state) {
+			if (state === "paused") {
+				Youtube.pause()
+			} else if (state === "resuming") {
+				Youtube.resume()
+			}
+		})
+
 	  	scope.$watch("AlienPlayer.current_track",function(track) {
-	  		if(track.state == "waiting") {
-	  			if(track.Providers && track.Providers[0].URL.indexOf("youtube.com") > -1) {
+	  		
+  			if(track.embeddable && track.embeddable.url.indexOf("youtube.com") > -1) {
+  				if (track.state === "waiting") {
 	  				$(element).show()
 	  				track.state = "loading";
-	  				Youtube.play(track.Providers[0].URL)
-	  			} else {
-	  				$(element).hide()
-	  				Youtube.stop()
-	  			}
-	      	} else {
-	  			$(element).hide()
-	  			if(track.Providers && track.Providers[0].URL.indexOf("youtube.com") == -1) {
-	  				Youtube.stop()
-	  			}
-	  		}
+	  				Youtube.play(track.embeddable.url)
+  				}
+  			} else {
+  				$(element).hide()
+  				Youtube.stop()
+  			}
+	      	
 	  	})
 
 	  	Youtube.stop = function() {
 	  		Youtube.player.stopVideo();
+	  	}
+
+	  	Youtube.pause = function() {
+	  		Youtube.player.pauseVideo();
+	  	}
+
+	  	Youtube.resume = function() {
+	  		Youtube.player.playVideo();
 	  	}
 
 	  	Youtube.play = function(url) {
@@ -69,11 +82,6 @@ angular.module('alienstreamApp')
 			   var apiurl = "https://gdata.youtube.com/feeds/api/videos/" + video_id[2] + "?v=2&alt=json"
 			   $.getJSON(apiurl,function(data) {
 					data = data.entry
-					console.log(data);
-					//$("#song_title").text(data.title.$t);
-					//$("#artist").html("<a target='_blank' href='http://www.youtube.com/user/"+data.author[0].uri.$t.split("/")[data.author[0].uri.$t.split("/").length-1]+"'>"+data.author[0].name.$t+"</a>");
-					//$("#bio").html(replaceURLWithHTMLLinks(data.media$group.media$description.$t.substr(0, 500)));
-					//$("#thumbnail").attr("src",data.media$group.media$thumbnail[0].url);  
 			   });
 			} else { 
 				console.log("The youtube url is not valid.");
@@ -82,7 +90,7 @@ angular.module('alienstreamApp')
 		}
 
 		setInterval(function(){
-			if(scope.AlienPlayer.current_track.Providers && scope.AlienPlayer.current_track.Providers[0].URL.indexOf("youtube.com") > -1) {
+			if(scope.AlienPlayer.current_track.embeddable && scope.AlienPlayer.current_track.embeddable.url.indexOf("youtube.com") > -1) {
 				var duration = Youtube.player.getDuration()
 				var current_time = Youtube.player.getCurrentTime()
 
@@ -101,6 +109,10 @@ angular.module('alienstreamApp')
 		Youtube.onPlayerStateChange = function(event) {
 			if (event.data == $window.YT.PlayerState.PLAYING) {
 				scope.AlienPlayer.current_track.state = "playing"
+			}
+
+			if (event.data == $window.YT.PlayerState.PAUSED) {
+				scope.AlienPlayer.current_track.state = "paused"
 			}
 
 			if (event.data == $window.YT.PlayerState.ENDED ) {

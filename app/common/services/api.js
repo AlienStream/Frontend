@@ -8,7 +8,7 @@
 
  			this.get = function(url,params) {
  				var differed = $q.defer();
- 				$http.get("http://api.alienstream.com/"+url+"/?"+params)
+ 				$http.get("http://api.alienstream.dev/"+url+"/?"+params)
  					.success(function(result){
  						differed.resolve(result);
  					})
@@ -18,7 +18,7 @@
 
  			this.post = function(url, data) {
  				var differed = $q.defer();
- 				$http.post("http://api.alienstream.com/"+url + "/",data)
+ 				$http.post("http://api.alienstream.dev/"+url + "/",data)
  					.success(function(result){
  						differed.resolve(result);
  					})

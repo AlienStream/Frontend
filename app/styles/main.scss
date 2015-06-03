@@ -141,11 +141,11 @@ navback {
 		}
 	}
 	.banner .bar {
-		height:130px;
+		height:260px;
 		border:none;
 	}
 	.track_info {
-		height:180px;
+		height:305px;
 		background-image:url(http://subtlepatterns.com/patterns/low_contrast_linen.png);
 		margin-bottom:-60px;
 		color:#EEE;
@@ -180,7 +180,7 @@ navback {
 	bottom: 0px;
 	left: 0px;
 	right: 0px;
-	top: 230px;
+	top: 360px;
 	overflow:hidden;
 	.bar {
 		background-color:#f1f2f4;
@@ -196,8 +196,7 @@ navback {
 }
 
 .player_holder {
-	min-height:250px;
-	border-bottom: 1px solid lightgray;
+	height:250px;
 }
 
 .bar { 
