@@ -6,10 +6,32 @@
 
  			}
 
- 			this.get = function(url,params) {
+ 			this.get = function(url, params, force_refresh) {
  				var differed = $q.defer();
- 				$http.get("http://api.alienstream.dev/"+url+"/?"+params)
+ 				var full_url = "http://api.alienstream.dev/"+url;
+ 				if (params !== undefined) {
+ 					full_url+="/?"+params;
+ 				}
+
+ 				try {
+ 					var data = localStorage.getItem(full_url);
+ 				} catch(e) {
+ 					console.log(e);
+ 				}
+
+ 				if (force_refresh !== true && data !== null && data.expires <= Date.now()) {
+ 					differed.resolve(data);
+ 					return differed.promise
+ 				}
+
+ 				$http.get(full_url)
  					.success(function(result){
+ 						try {
+ 							result.expires = Date.now() + 1000*60*15;
+ 							localStorage.setItem(full_url, result);
+ 						} catch(e) {
+ 							console.log(e);
+ 						}
  						differed.resolve(result);
  					})
  				return differed.promise;

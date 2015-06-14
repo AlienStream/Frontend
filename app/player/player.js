@@ -7,6 +7,7 @@
 			AlienPlayer.current_track = {};
 			AlienPlayer.playlist = [];
 			AlienPlayer.played = [];
+			AlienPlayer.current_playlist = {};
 
 
 			//playlist control
@@ -36,12 +37,21 @@
 					AlienPlayer.played.push(AlienPlayer.current_track);
 					AlienPlayer.current_track = AlienPlayer.playlist.shift();
 					AlienPlayer.current_track.state = "waiting";
+					var stateObj = {};
+					var current_location = window.location.hash.split("?")[0];
+					var params = "?" + "track=" + AlienPlayer.current_track.id;
+					params += "&" + "playlist=" + AlienPlayer.current_playlist.title;
+					history.pushState(stateObj, "AlienStream", current_location + params);
 				}
 			}
 
 			this.load = function(sub,sort) {
+				AlienPlayer.current_playlist = {
+					"title": sub,
+				}
 				api.get("community/"+sub+"/tracks",sort).then(function(response) {
 					AlienPlayer.playlist = response.data
+					console.log(AlienPlayer.playlist);
 					AlienPlayer.played.push(AlienPlayer.current_track);
 					AlienPlayer.current_track = AlienPlayer.playlist.shift();
 					AlienPlayer.current_track.state = "waiting";
@@ -64,6 +74,6 @@
 				}
 			}
 
-			AlienPlayer.sorts = [{val:"",title:"Hot"},{val:"sort=top&t=week",title:"Top Week"},{val:"sort=top&t=month",title:"Top Month"},{val:"sort=top&t=year",title:"Top Year"},{val:"sort=top&t=all",title:"Top All"}]
+			AlienPlayer.sorts = [{val:"",title:"Hot"},{val:"sort=top&t=24",title:"Top Today"},{val:"sort=top&t=168",title:"Top Week"},{val:"sort=top&t=730",title:"Top Month"},{val:"sort=top&t=8765",title:"Top Year"},{val:"sort=top&t=999999",title:"Top All"}]
 
 		}]);

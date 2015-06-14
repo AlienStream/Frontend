@@ -18,11 +18,7 @@ angular
 		    templateUrl: 'common/templates/parallax.html',
         controller: 'SignupCtrl'
       })
-      .state('signup', {
-        url: '/signup', 
-        templateUrl: 'user/signup.html',
-        controller: 'SignupCtrl'
-      })
+
 	    .state('app', {
         abstract:true, 
         url: '/app',
@@ -58,6 +54,16 @@ angular
             controller: 'CommunityCtrl'
           }
         }
+      })
+
+      .state('app.signup', {
+        url: '/signup',     
+        views: {
+          "content": {
+            templateUrl: 'user/signup.html',
+            controller: 'SignupCtrl'
+          }
+        } 
       })
 
       .state('app.playlist', {

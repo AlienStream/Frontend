@@ -15,17 +15,3 @@
 		<navback></navback>
 	</div>
 </div>
-
-<div class="community_tracks">
-	<div class="track"  ng-repeat="track in community.Tracks | orderBy:rank">
-		<div class="col-sm-2">
-				<span>{{$index}}</span>
-		</div>
-		<div class="col-sm-6">
-				<span>{{track.title}}</span>
-		</div>
-		<div class="col-sm-4">
-			{{track.embeddable.type}}
-		</div>
-	</div>
-</div>

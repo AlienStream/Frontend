@@ -33,8 +33,8 @@ angular.module('alienstreamApp')
 
    			if(current_state == "app.explore") {
    				$scope.section_title = "Discover Great New Music"
-               api.get("communities/trending").then(function(response) {
-                  $scope.communities = response.data
+               api.get("communities/trending").then(function(communities) {
+                  $scope.communities = communities.data
                })
    			}
 
@@ -54,16 +54,18 @@ angular.module('alienstreamApp')
 		 				for(var key in response.data){
 						    community[key] = response.data[key];
 						}
-                  console.log(community)
 		 			});
 
-
-		        //get tracks
-		        api.get("community/" + community.name + "/tracks","sort=top&t=week")
-		 			.then(function(response) {community.Tracks = response.data});
 
 		        $scope.community = community
    			}
 
-		}
-	]);
+            $scope.thumbnail = function(image) {
+               if(image == "") {
+                  return("/assets/images/alienicon.jpg")
+               }
+               return image.replace('maxresdefault','default')
+            }
+		   }
+      ]
+   );
