@@ -34,15 +34,21 @@
  						}
  						differed.resolve(result);
  					})
+ 					.error(function(result){
+ 						differed.reject(result);
+ 					})
  				return differed.promise;
  			}
 
 
  			this.post = function(url, data) {
  				var differed = $q.defer();
- 				$http.post("http://api.alienstream.dev/"+url + "/",data)
+ 				$http.post("http://api.alienstream.dev/"+url,data)
  					.success(function(result){
  						differed.resolve(result);
+ 					})
+ 					.error(function(result){
+ 						differed.reject(result);
  					})
  				return differed.promise;
  			}
