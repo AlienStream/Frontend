@@ -61,7 +61,6 @@ angular
         views: {
           "content": {
             templateUrl: 'user/signup.html',
-            controller: 'SignupCtrl'
           }
         } 
       })
