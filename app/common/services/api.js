@@ -1,4 +1,4 @@
- angular.
+ uiangular.
  	module('alienstreamApp')
  		.service('api', ['$http', '$q', function($http, $q) {
  			//meta data request functions
@@ -8,7 +8,7 @@
 
  			this.get = function(url, params, force_refresh) {
  				var differed = $q.defer();
- 				var full_url = "http://api.alienstream.dev/"+url;
+ 				var full_url = "http://api.alienstream.com/"+url;
  				if (params !== undefined) {
  					full_url+="/?"+params;
  				}
@@ -40,7 +40,7 @@
 
  			this.post = function(url, data) {
  				var differed = $q.defer();
- 				$http.post("http://api.alienstream.dev/"+url + "/",data)
+ 				$http.post("http://api.alienstream.com/"+url + "/",data)
  					.success(function(result){
  						differed.resolve(result);
  					})
