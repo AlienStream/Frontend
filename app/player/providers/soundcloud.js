@@ -41,7 +41,7 @@ angular.module('alienstreamApp')
 
 		SoundCloud.Resume = function() {
 			if(SoundCloud.widget && scope.AlienPlayer.current_track.embeddable.url.indexOf("soundcloud.com") > -1) {
-				SoundCloud.widget.pause()
+				SoundCloud.widget.play()
 			}
 		}
 
@@ -75,6 +75,7 @@ angular.module('alienstreamApp')
 								track.state = "ended"
 								scope.$apply()			
 							});
+							SoundCloud.widget.play()
 	  					}
 	  				})
 	  			}
