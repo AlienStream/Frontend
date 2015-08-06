@@ -1,4 +1,4 @@
- uiangular.
+angular.
  	module('alienstreamApp')
  		.service('api', ['$http', '$q', function($http, $q) {
  			//meta data request functions
