@@ -37,15 +37,16 @@ angular.module('alienstreamApp')
 	  	})
 
 		scope.$watch("AlienPlayer.current_track.state", function(state) {
-			if (state === "paused") {
-				Youtube.pause()
-			} else if (state === "resuming") {
-				Youtube.resume()
+			if(scope.AlienPlayer.current_track.embeddable && scope.AlienPlayer.current_track.embeddable.url.indexOf("youtube.com") > -1) {
+				if (state === "paused") {
+					Youtube.pause()
+				} else if (state === "resuming") {
+					Youtube.resume()
+				}
 			}
 		})
 
 	  	scope.$watch("AlienPlayer.current_track",function(track) {
-	  		
   			if(track.embeddable && track.embeddable.url.indexOf("youtube.com") > -1) {
   				if (track.state === "waiting") {
 	  				$(element).show()
@@ -60,15 +61,21 @@ angular.module('alienstreamApp')
 	  	})
 
 	  	Youtube.stop = function() {
-	  		Youtube.player.stopVideo();
+	  		if (Youtube.player) {
+	  			Youtube.player.stopVideo();
+  			}
 	  	}
 
 	  	Youtube.pause = function() {
-	  		Youtube.player.pauseVideo();
+	  		if (Youtube.player) {
+	  			Youtube.player.pauseVideo();
+	  		}
 	  	}
 
 	  	Youtube.resume = function() {
-	  		Youtube.player.playVideo();
+	  		if (Youtube.player && scope.AlienPlayer.current_track.embeddable.url.indexOf("soundcloud.com") > -1) {
+	  			Youtube.player.playVideo();		
+	  		}
 	  	}
 
 	  	Youtube.play = function(url) {
@@ -77,6 +84,13 @@ angular.module('alienstreamApp')
 	  		url = decodeURIComponent(url);
 			var video_id = url.match(/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/);
 			
+			while ( ! Youtube.loaded || ! Youtube.player.loadVideoById) {
+				setTimeout(function() {
+					Youtube.play(url)
+				}, 500)
+				return
+			}
+
 			if(video_id != null) {
 			   Youtube.player.loadVideoById(String(video_id[2]))
 			   var apiurl = "https://gdata.youtube.com/feeds/api/videos/" + video_id[2] + "?v=2&alt=json"
@@ -90,7 +104,7 @@ angular.module('alienstreamApp')
 		}
 
 		setInterval(function(){
-			if(scope.AlienPlayer.current_track.embeddable && scope.AlienPlayer.current_track.embeddable.url.indexOf("youtube.com") > -1) {
+			if(Youtube.player && scope.AlienPlayer.current_track.embeddable && scope.AlienPlayer.current_track.embeddable.url.indexOf("youtube.com") > -1) {
 				var duration = Youtube.player.getDuration()
 				var current_time = Youtube.player.getCurrentTime()
 

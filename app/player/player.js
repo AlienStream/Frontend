@@ -1,6 +1,6 @@
  angular
 	.module('alienstreamApp')
-		.service('AlienPlayer', ['api', 'utils', function(api, utils) {
+		.service('AlienPlayer', ['api', 'utils', '$location', function(api, utils, $location) {
 			var AlienPlayer = this;
 
 			//state variables
@@ -38,10 +38,11 @@
 					AlienPlayer.current_track = AlienPlayer.playlist.shift();
 					AlienPlayer.current_track.state = "waiting";
 					var stateObj = {};
-					var current_location = window.location.hash.split("?")[0];
-					var params = "?" + "track=" + AlienPlayer.current_track.id;
+					var current_location = window.location.hash.split("?")[0].substring(1);
+					var params = "track=" + AlienPlayer.current_track.id;
 					params += "&" + "playlist=" + AlienPlayer.current_playlist.title;
-					history.pushState(stateObj, "AlienStream", current_location + params);
+
+					$location.path(current_location).search(params);
 				}
 			}
 
@@ -51,7 +52,6 @@
 				}
 				api.get("community/"+sub+"/tracks",sort).then(function(response) {
 					AlienPlayer.playlist = response.data
-					console.log(AlienPlayer.playlist);
 					AlienPlayer.played.push(AlienPlayer.current_track);
 					AlienPlayer.current_track = AlienPlayer.playlist.shift();
 					AlienPlayer.current_track.state = "waiting";
