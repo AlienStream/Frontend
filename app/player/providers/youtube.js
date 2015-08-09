@@ -73,7 +73,7 @@ angular.module('alienstreamApp')
 	  	}
 
 	  	Youtube.resume = function() {
-	  		if (Youtube.player && scope.AlienPlayer.current_track.embeddable.url.indexOf("soundcloud.com") > -1) {
+	  		if (Youtube.player && scope.AlienPlayer.current_track.embeddable.url.indexOf("youtube.com") > -1) {
 	  			Youtube.player.playVideo();		
 	  		}
 	  	}

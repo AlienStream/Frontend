@@ -50,9 +50,9 @@ angular.module('alienstreamApp')
 		scope.$watch("AlienPlayer.current_track.state", function(state) {
 			if(scope.AlienPlayer.current_track.embeddable && scope.AlienPlayer.current_track.embeddable.url.indexOf("soundcloud.com") > -1) {
 				if (state === "paused") {
-					SoundCloud.pause()
+					SoundCloud.Pause()
 				} else if (state === "resuming") {
-					SoundCloud.resume()
+					SoundCloud.Resume()
 				}
 			}
 		})
@@ -66,16 +66,32 @@ angular.module('alienstreamApp')
 	  					if(result === null) {
 	  						track.state = "failed"
 	  					} else {
-	  						track.state = "playing"
 	  						SoundCloud.widget = null;
 		  					element.html(result.html)
 		  					SoundCloud.widget = SoundCloud.api.Widget(element.find("iframe")[0])
 		  					angular.element(element.find("iframe")[0]).attr("height","250px")
+
 							SoundCloud.widget.bind(SoundCloud.api.Widget.Events.FINISH,function(){
 								track.state = "ended"
 								scope.$apply()			
 							});
-							SoundCloud.widget.play()
+
+							SoundCloud.widget.bind(SoundCloud.api.Widget.Events.ERROR,function(){
+								track.state = "failed"
+								scope.$apply()			
+							});
+
+							SoundCloud.widget.bind(SoundCloud.api.Widget.Events.PAUSE,function(){
+								track.state = "paused"
+								scope.$apply()			
+							});
+
+							SoundCloud.widget.bind(SoundCloud.api.Widget.Events.PLAY,function(){
+								track.state = "playing"
+								scope.$apply()			
+							});
+
+							
 	  					}
 	  				})
 	  			}
