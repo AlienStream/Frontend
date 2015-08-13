@@ -11,11 +11,13 @@ angular.module('alienstreamApp')
 	  	var SoundCloud = scope.SoundCloud;
 
 	  	SoundCloud.init = function() {
-	  		$window.SC.initialize({
-				client_id: SoundCloud.client_id
-			});
+	  		if ($window.SC) {
+	  			$window.SC.initialize({
+					client_id: SoundCloud.client_id
+				});
 
-			SoundCloud.api = $window.SC;
+				SoundCloud.api = $window.SC;
+	  		}
 	  	}
 
 

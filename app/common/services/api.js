@@ -1,6 +1,8 @@
 angular.
  	module('alienstreamApp')
  		.service('api', ['$http', '$q', function($http, $q) {
+
+ 			var base_url = "http://api.alienstream.dev/"
  			//meta data request functions
  			this.trending = function() {
 
@@ -8,7 +10,7 @@ angular.
 
  			this.get = function(url, params, force_refresh) {
  				var differed = $q.defer();
- 				var full_url = "http://api.alienstream.com/"+url;
+ 				var full_url = base_url+url;
  				if (params !== undefined) {
  					full_url+="/?"+params;
  				}
@@ -43,7 +45,7 @@ angular.
 
  			this.post = function(url, data) {
  				var differed = $q.defer();
- 				$http.post("http://api.alienstream.com/"+url,data)
+ 				$http.post(base_url+url,data)
  					.success(function(result){
  						differed.resolve(result);
  					})

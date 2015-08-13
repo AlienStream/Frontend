@@ -5,12 +5,12 @@
             <li><a ui-sref="app.explore">Discover</a></li>
             <li><a ui-sref="app.trending">Trending</a></li>
             <li><a ui-sref="app.popular">Popular</a></li>
-            <li ng-show="user"><a ui-sref="app.mycommunities">My Communities</a></li>
-            <li ng-show="user"><a ui-sref="app.myfavorites">My Favorites</a></li>
+            <li ng-show="user.isLoggedIn()"><a ui-sref="app.mycommunities">My Communities</a></li>
+            <li ng-show="user.isLoggedIn()"><a ui-sref="app.myfavorites">My Favorites</a></li>
             <li><a ui-sref="app.genres">Browse by Genre</a></li>
             <li><a ui-sref="app.artists">Browse by Artist</a></li>
-            <li ng-hide="user"><a ui-sref="app.signup">Login / Sign Up</a></li>
-            <li ng-show="user"><a ui-sref="app.mysettings">Settings</a></li>
+            <li ng-hide="user.isLoggedIn()"><a ui-sref="app.signup">Login / Sign Up</a></li>
+            <li ng-show="user.isLoggedIn()"><a ui-sref="app.mysettings">Settings</a></li>
         </ul>
     </div>
     <div class="center_content" ui-view="content">

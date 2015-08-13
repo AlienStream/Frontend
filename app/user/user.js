@@ -1,9 +1,42 @@
  angular.
  	module('alienstreamApp').
-		 factory('User', function() {
-		    	//properties about the user
+		 factory('user', function() {
+		    var loggedIn = false;
+		    var userName, userId;
+
+		    if(localStorage.getItem('user')) {
+		    	var user = JSON.parse(localStorage.getItem('user'))
+		    	loggedIn = true;
+		    	userName = user['username'];
+		    	userId = user['id'];	
+		    }
+
 		    return {
-		    	//getters for all user data
-		    	//methods for updating user data
+		    	isLoggedIn: function() {
+		    		return loggedIn;
+		    	},
+
+		    	getUserName: function() {
+		    		return userName;
+		    	},
+
+		    	getUserId: function() {
+		    		return userId;
+		    	},
+
+		    	authenticate: function(user) {
+		    		loggedIn = true;
+		    		userName = user['username'];
+		    		userId = user['id'];
+		    		this.storeUser(user)
+		    	},
+
+		    	clearUser: function() {
+		    		localStorage.setItem('user', '')
+		    	},
+
+		    	storeUser: function(user) {
+		    		localStorage.setItem('user', JSON.stringify(user));
+		    	}
 		    };
 		  });
