@@ -89,6 +89,26 @@ angular
         }
       })
 
+      .state('app.track', {
+        url: '/track/:id',
+        views: {
+          "content@app": {
+            templateUrl: 'track/track.html',
+            controller: 'TrackCtrl'
+          }
+        }
+      })
+
+      .state('app.artist', {
+        url: '/artist/:id',
+        views: {
+          "content@app": {
+            templateUrl: 'artist/artist.html',
+            controller: 'ArtistCtrl'
+          }
+        }
+      })
+
       
 
     
