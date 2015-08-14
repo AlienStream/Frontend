@@ -5,30 +5,30 @@
 	    <div class="form-group">
 	        <label class="col-md-4 control-label">Username</label>
 	        <div class="col-md-6">
-	            <input type="text" class="form-control" value="" ng-model="user.name">
+	            <input type="text" class="form-control" value="" ng-model="new_user.name">
 	        </div>
 	    </div>
 	    <div class="form-group">
 	        <label class="col-md-4 control-label">E-Mail Address</label>
 	        <div class="col-md-6">
-	            <input type="email" class="form-control"  value="" ng-model="user.email">
+	            <input type="email" class="form-control"  value="" ng-model="new_user.email">
 	        </div>
 	    </div>
 	    <div class="form-group">
 	        <label class="col-md-4 control-label">Password</label>
 	        <div class="col-md-6">
-	            <input type="password" class="form-control" ng-model="user.password">
+	            <input type="password" class="form-control" ng-model="new_user.password">
 	        </div>
 	    </div>
 	    <div class="form-group">
 	        <label class="col-md-4 control-label">Confirm Password</label>
 	        <div class="col-md-6">
-	            <input type="password" class="form-control" ng-model="user.password_confirmation">
+	            <input type="password" class="form-control" ng-model="new_user.password_confirmation">
 	        </div>
 	    </div>
 	    <div class="form-group">
 	        <div class="col-md-6 col-md-offset-4">
-	            <button class="btn btn-primary" ng-click="signUp(user)">
+	            <button class="btn btn-primary" ng-click="signUp(new_user)">
 	                Register
 	            </button>
 	        </div>
@@ -43,18 +43,18 @@
 	    <div class="form-group">
 	        <label class="col-md-4 control-label">Email Address</label>
 	        <div class="col-md-6">
-	            <input type="email" class="form-control" value="" ng-model="user.email">
+	            <input type="email" class="form-control" value="" ng-model="old_user.email">
 	        </div>
 	    </div>
 	    <div class="form-group">
 	        <label class="col-md-4 control-label">Password</label>
 	        <div class="col-md-6">
-	            <input type="password" class="form-control"  ng-model="user.password">
+	            <input type="password" class="form-control"  ng-model="old_user.password">
 	        </div>
 	    </div>
 	    <div class="form-group">
 	        <div class="col-md-6 col-md-offset-4">
-	            <button class="btn btn-primary" ng-click="signIn(user)">
+	            <button class="btn btn-primary" ng-click="signIn(old_user)">
 	                Sign In
 	            </button>
 	        </div>

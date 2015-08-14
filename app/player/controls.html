@@ -1,6 +1,6 @@
 <div class="track_info">
-    <h3 class="title">{{AlienPlayer.current_track.title}}</h3>
-    <h4 class="description">{{AlienPlayer.current_track.channel.artist.name}}</h4>
+    <h3 class="title" ng-click="showTrack(AlienPlayer.current_track.id)" >{{AlienPlayer.current_track.title}}</h3>
+    <h4 class="description" ng-click="showArtist(AlienPlayer.current_track.channel.artist.id)" >{{AlienPlayer.current_track.channel.artist.name}}</h4>
 </div>
 
 <div style="padding:0 20px;">
@@ -28,21 +28,21 @@
 
 <div style="text-align:center; width: 95%; margin: 20px auto;">
 	<div style="width:25%;float:left;">
-		<a style="cursor:pointer;">
+		<a style="cursor:pointer;" ng-click="AlienPlayer.favoriteToggle()">
 			<span style="padding:10px;" class="fa-large fa fa-heart-o"></span>
 		</a>
 	</div>
 	<div style="width:25%;float:left;">
-		<a style="cursor:pointer;">
+		<a style="cursor:pointer;" ng-click="AlienPlayer.toggleFlagMenu()">
 			<span style="padding:10px;" class="fa-large fa fa-flag-o"></span>
 		</a>
 	</div>
-	<div style="width:25%;float:left;">
+	<div style="width:25%;float:left;" ng-click="AlienPlayer.toggleVolumeMenu()">
 		<a style="cursor:pointer;margin:0px 15px;">
 			<span style="padding:10px;" class="fa-large fa fa-volume-up"></span>
 		</a>
 	</div>
-	<div style="width:25%;float:left;">
+	<div style="width:25%;float:left;" ng-click="AlienPlayer.share()">
 		<a style="cursor:pointer;">
 			<span style="padding:10px" class="fa-large fa fa-share-alt"></span>
 		</a>

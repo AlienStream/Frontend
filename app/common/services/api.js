@@ -1,6 +1,6 @@
 angular.
  	module('alienstreamApp')
- 		.service('api', ['$http', '$q', function($http, $q) {
+ 		.service('api', ['$http', '$q', 'user', function($http, $q, user) {
 
  			var base_url = "http://api.alienstream.dev/"
  			//meta data request functions
@@ -38,6 +38,7 @@ angular.
  					})
  					.error(function(result){
  						differed.reject(result);
+ 						user.clearUser();
  					})
  				return differed.promise;
  			}
@@ -50,6 +51,7 @@ angular.
  						differed.resolve(result);
  					})
  					.error(function(result){
+ 						user.clearUser();
  						differed.reject(result);
  					})
  				return differed.promise;

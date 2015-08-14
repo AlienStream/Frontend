@@ -48,7 +48,7 @@ angular.module('alienstreamApp')
                      $scope.communities.push(community)
                   });
                })
-               api.get("communities/"+user.getUserId()+"/moderated_communities").then(function(communities) {
+               api.get("user/"+user.getUserId()+"/moderated_communities").then(function(communities) {
                   communities.data.forEach(function(community) {
                      for (var i = 0; i < $scope.communities.length; i++) {
                            if ($scope.communities[i].id === community.id) return;
