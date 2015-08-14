@@ -1,10 +1,6 @@
-<h3 class="content_title">{{section_title}}</h3>
-<!--
+<h3 class="content_title" style="display: inline-block;">{{section_title}}</h3> <a style="display: inline-block;" ng-href="#/app/create/community">Create A Community</a>
 <navback></navback>
-<div>
-	<a ng-href="#/app/create/community">Create A Community</a>
-</div>
--->
+
 <div class="community_list row">
     <div class="col-lg-3 col-md-4 col-sm-6" ng-repeat="community in communities | orderBy:FavoriteCount">
         <a class="preview" ng-href="#/app/community/{{community.name}}">

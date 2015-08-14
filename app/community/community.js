@@ -1,6 +1,6 @@
 angular.module('alienstreamApp')
-    .controller('CommunityCtrl', ["$scope", "$state", "$stateParams","api","AlienPlayer",
-   		function($scope, $state, $stateParams, api, AlienPlayer) {
+    .controller('CommunityCtrl', ["$scope", "$state", "$stateParams","api","AlienPlayer", "user",
+   		function($scope, $state, $stateParams, api, AlienPlayer, user) {
    			$scope.AlienPlayer = AlienPlayer
 
    			var current_state = $state.$current.self.name;
@@ -11,11 +11,10 @@ angular.module('alienstreamApp')
 
    				$scope.CreateCommunity = function() {
                   var source = {
-                     Description: "",
-                     Title: $scope.source,
-                     Thumbnail: "",
-                     Type: "reddit",
-                     URL: $scope.source,
+                     description: "",
+                     title: $scope.source,
+                     thumbnail: "",
+                     url: $scope.source,
                   }
 
    					var community = {
@@ -26,7 +25,7 @@ angular.module('alienstreamApp')
    						sources:[source],
    					}
 
-   					api.post("community/"+community.name+"/create",community)
+   					api.post("community/"+community.name,community)
    				}
 
    			}
@@ -39,7 +38,25 @@ angular.module('alienstreamApp')
    			}
 
    			if(current_state == "app.mycommunities") {
-   				$scope.section_title = "My Communities"
+   				$scope.section_title = "My Communities";
+               $scope.communities = [];
+               api.get("user/"+user.getUserId()+"/favorited_communities").then(function(communities) {         
+                  communities.data.forEach(function(community) {
+                     for (var i = 0; i < $scope.communities.length; i++) {
+                        if ($scope.communities[i].id === community.id) return;
+                     }     
+                     $scope.communities.push(community)
+                  });
+               })
+               api.get("communities/"+user.getUserId()+"/moderated_communities").then(function(communities) {
+                  communities.data.forEach(function(community) {
+                     for (var i = 0; i < $scope.communities.length; i++) {
+                           if ($scope.communities[i].id === community.id) return;
+                     }
+                     $scope.communities.push(community)
+                  });
+               })
+               $scope.show_create = true;
    			}
 
    			if(current_state == "app.community") {
@@ -59,13 +76,6 @@ angular.module('alienstreamApp')
 
 		        $scope.community = community
    			}
-
-            $scope.thumbnail = function(image) {
-               if(image == "") {
-                  return("/assets/images/alienicon.jpg")
-               }
-               return image.replace('maxresdefault','default')
-            }
 		   }
       ]
    );
