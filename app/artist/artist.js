@@ -16,6 +16,11 @@ angular.module('alienstreamApp')
                   }
                });
                
+	       api.get("me","")
+                  .then(function(response) {
+               		console.log(response);
+		});
+               
 
                $scope.artist = artist
    			}

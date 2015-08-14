@@ -8,10 +8,14 @@ angular
 	'ui.router',
     'routeStyles'
   ])
-  .config(function ($stateProvider, $urlRouterProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
   
 	$urlRouterProvider.otherwise("/");
 	
+    $httpProvider.defaults.useXDomain = true;
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    $httpProvider.defaults.withCredentials=true;
+
     $stateProvider
       .state('parallax', {
 		    url: '/', 

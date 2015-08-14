@@ -2,11 +2,7 @@ angular.
  	module('alienstreamApp')
  		.service('api', ['$http', '$q', 'user', function($http, $q, user) {
 
- 			var base_url = "http://api.alienstream.dev/"
- 			//meta data request functions
- 			this.trending = function() {
-
- 			}
+ 			var base_url = "http://api.alienstream.com/"
 
  			this.get = function(url, params, force_refresh) {
  				var differed = $q.defer();
@@ -26,7 +22,7 @@ angular.
  					return differed.promise
  				}
 
- 				$http.get(full_url)
+ 				$http.get(full_url, {withCredentials: true})
  					.success(function(result){
  						try {
  							result.expires = Date.now() + 1000*60*15;
@@ -46,7 +42,7 @@ angular.
 
  			this.post = function(url, data) {
  				var differed = $q.defer();
- 				$http.post(base_url+url,data)
+ 				$http.post(base_url+url,data, {withCredentials: true})
  					.success(function(result){
  						differed.resolve(result);
  					})
