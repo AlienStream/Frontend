@@ -37,7 +37,7 @@ angular.module('alienstreamApp')
 	  	})
 
 		scope.$watch("AlienPlayer.current_track.state", function(state) {
-			if(scope.AlienPlayer.current_track.embeddable && scope.AlienPlayer.current_track.embeddable.url.indexOf("youtube.com") > -1) {
+			if(Youtube.trackCanBeHandled(scope.AlienPlayer.current_track)) {
 				if (state === "paused") {
 					Youtube.pause()
 				} else if (state === "resuming") {
@@ -47,7 +47,7 @@ angular.module('alienstreamApp')
 		})
 
 	  	scope.$watch("AlienPlayer.current_track",function(track) {
-  			if(track.embeddable && track.embeddable.url.indexOf("youtube.com") > -1) {
+  			if(Youtube.trackCanBeHandled(track)) {
   				if (track.state === "waiting") {
 	  				$(element).show()
 	  				track.state = "loading";
@@ -59,6 +59,18 @@ angular.module('alienstreamApp')
   			}
 	      	
 	  	})
+
+	  	Youtube.trackCanBeHandled = function(track) {
+	  		if(track.embeddable && track.embeddable.url.indexOf("youtube.com") > -1) {
+	  			return true;
+  			}
+
+  			if(track.embeddable && track.embeddable.url.indexOf("youtu.be") > -1) {
+	  			return true;
+  			}
+
+  			return false
+	  	}
 
 	  	Youtube.stop = function() {
 	  		if (Youtube.player) {
@@ -73,7 +85,7 @@ angular.module('alienstreamApp')
 	  	}
 
 	  	Youtube.resume = function() {
-	  		if (Youtube.player && scope.AlienPlayer.current_track.embeddable.url.indexOf("youtube.com") > -1) {
+	  		if (Youtube.player && Youtube.trackCanBeHandled(scope.AlienPlayer.current_track)) {
 	  			Youtube.player.playVideo();		
 	  		}
 	  	}
@@ -104,7 +116,7 @@ angular.module('alienstreamApp')
 		}
 
 		setInterval(function(){
-			if(Youtube.player && scope.AlienPlayer.current_track.embeddable && scope.AlienPlayer.current_track.embeddable.url.indexOf("youtube.com") > -1) {
+			if(Youtube.trackCanBeHandled(scope.AlienPlayer.current_track)) {
 				var duration = Youtube.player.getDuration()
 				var current_time = Youtube.player.getCurrentTime()
 
