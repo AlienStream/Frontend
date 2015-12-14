@@ -71,7 +71,7 @@ angular.module('alienstreamApp')
 	  						SoundCloud.widget = null;
 		  					element.html(result.html)
 		  					SoundCloud.widget = SoundCloud.api.Widget(element.find("iframe")[0])
-		  					angular.element(element.find("iframe")[0]).attr("height","250px")
+		  					angular.element(element.find("iframe")[0]).attr("height","270px")
 
 							SoundCloud.widget.bind(SoundCloud.api.Widget.Events.FINISH,function(){
 								track.state = "ended"

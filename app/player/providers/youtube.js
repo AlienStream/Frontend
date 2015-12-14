@@ -25,8 +25,8 @@ angular.module('alienstreamApp')
 		scope.$watch(function () {return Youtube.loaded;}, function(loaded){
 				if(loaded) {
 			  		Youtube.player = new $window.YT.Player('player', {
-			  		  width: "250px",
-			  		  height: "250px",
+			  		  width: "270px",
+			  		  height: "270px",
 					  events: {
 						'onReady': Youtube.onPlayerReady,
 						'onStateChange': Youtube.onPlayerStateChange,

@@ -5,7 +5,7 @@
 <div class="community_list row">
     <div class="col-lg-3 col-md-4 col-sm-6" ng-repeat="community in communities | orderBy:FavoriteCount">
         <a class="preview" ng-href="#/app/community/{{community.name}}">
-            <img src="{{community.thumbnail}}">
+            <img src="{{community.thumbnail ? community.thumbnail:'http://infinitelegroom.com/wp-content/uploads/2013/03/10-best-headphones-preview.png'}}">
             <div class="info">
                 <h3 class="title">{{community.name}}</h3>
                 <h4 class="description">{{community.description}}</h4>

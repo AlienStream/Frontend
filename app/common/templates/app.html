@@ -1,44 +1,49 @@
 <div class="app_view">
-    <div class="bar left_bar">
-        <h2 class="menu_title"><img style="float: left;width: 30px;margin-right: 10px;" src="/assets/images/alienicon.jpg"/>AlienStream</h2>
-        <ul class="bar_menu main_menu">
+    <div class="top_bar">
+        <h2 class="logo">
+            <a ui-sref="app.explore">
+                AlienStream
+            </a>
+        </h2>
+        <ul class="settings_menu">
+            <li ng-hide="user.isLoggedIn()"><a ui-sref="app.signup">Login<i class="fa fa-user"></i></a></li>
+            <li ng-show="user.isLoggedIn()"><a ui-sref="app.profile">{{user.getUserName()}}<i class="fa fa-user"></i></a></li>
+            <li><a ui-sref="app.mysettings">Settings<i class="fa fa-cog"></i></a></li>
+        </ul>
+        <ul class="main_menu">
             <li><a ui-sref="app.explore">Discover</a></li>
-            <li><a ui-sref="app.trending">Trending</a></li>
             <li><a ui-sref="app.popular">Popular</a></li>
             <li ng-show="user.isLoggedIn()"><a ui-sref="app.mycommunities">My Communities</a></li>
             <li ng-show="user.isLoggedIn()"><a ui-sref="app.myfavorites">My Favorites</a></li>
-            <li><a ui-sref="app.genres">Browse by Genre</a></li>
-            <li><a ui-sref="app.artists">Browse by Artist</a></li>
-            <li ng-hide="user.isLoggedIn()"><a ui-sref="app.signup">Login / Sign Up</a></li>
-            <li ng-show="user.isLoggedIn()"><a ui-sref="app.mysettings">Settings</a></li>
         </ul>
     </div>
-    <div class="center_content" ui-view="content">
-        
-    </div>
-    <div ng-controller="PlayerCtrl" class="bar right_bar" ng-show="AlienPlayer.playlist.length !== 0">
-        <div class="player">
-            <div class="player_holder">
-                <youtube> </youtube>
-                <soundcloud> </soundcloud>
+    <div class="main">
+        <div class="center_content" ui-view="content">
+
+        </div>
+        <div ng-controller="PlayerCtrl" class="bar right_bar" style="background:#252525;color:#FFF;">
+            <div class="player">
+                <div class="player_holder">
+                    <youtube> </youtube>
+                    <soundcloud> </soundcloud>
+                </div>
+            </div>
+            <div class="controls">
+                <controls></controls>
+            </div>
+            <div class="expandable current_community" ng-controller="CommunityCtrl">
+                <ul>
+                    <li class="snippet">
+                        <img src="{{community.thumbnail}}">
+                        <div class="info">
+                            <h3 class="title">Now Playing</h3>
+                            <h4 class="description">{{community.name}}</h4>
+                            <button class="expand"><i class="fa fa-angle-up" ng-click="showNowPlaying"></i>
+                            </button>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
-        <div class="controls">
-            <controls></controls>
-        </div>
-        <div class="expandable current_community" ng-controller="CommunityCtrl">
-            <ul>
-                <li class="snippet">
-                    <img src="{{community.thumbnail}}">
-                    <div class="info">
-                        <h3 class="title">Now Playing</h3>
-                        <h4 class="description">{{community.name}}</h4>
-                        <button class="expand"><i class="fa fa-angle-up" ng-click="showNowPlaying"></i>
-                        </button>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
     </div>
 </div>

@@ -7,7 +7,7 @@
 		    if(localStorage.getItem('user')) {
 		    	var user = JSON.parse(localStorage.getItem('user'))
 		    	loggedIn = true;
-		    	userName = user['username'];
+		    	userName = user['name'];
 		    	userId = user['id'];	
 		    }
 
@@ -26,7 +26,7 @@
 
 		    	authenticate: function(user) {
 		    		loggedIn = true;
-		    		userName = user['username'];
+		    		userName = user['name'];
 		    		userId = user['id'];
 		    		this.storeUser(user)
 		    	},

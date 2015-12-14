@@ -1,17 +1,15 @@
 <div class="community_header">
 	<div class="info">
-		<img class="image" src="{{community.thumbnail}}">
-		<h3 class="title">{{community.name}}</h3>
+		<h2 class="title">{{community.name}}</h2>
 		<h4 clsss="description">{{community.description}}</h4>
-
+	</div>
+	<div class="action_bar">
+		<navback></navback>
 		<select ng-init="playersort = AlienPlayer.sorts[2]" ng-model="playersort" ng-options = "sort.title for sort in AlienPlayer.sorts">
 		</select>
 
 		<button class="btn btn-primary" ng-click="AlienPlayer.load(community.name,playersort.val)">
 			Play Community
 		</button>
-	</div>
-	<div class="topbar">
-		<navback></navback>
 	</div>
 </div>
