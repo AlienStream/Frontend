@@ -38,7 +38,7 @@
 					AlienPlayer.current_track = AlienPlayer.playlist.shift();
 					AlienPlayer.current_track.state = "waiting";
 					var stateObj = {};
-					var current_location = window.location.hash.split("?")[0].substring(1);
+					var current_location = decodeURIComponent(window.location.hash.split("?")[0].substring(1));
 					var params = "track=" + AlienPlayer.current_track.id;
 					params += "&" + "playlist=" + AlienPlayer.current_playlist.title;
 
