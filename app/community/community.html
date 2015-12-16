@@ -13,3 +13,18 @@
 		</button>
 	</div>
 </div>
+
+<div class="row community_content">
+	<div class="col-sm-9 tracklist">
+		<table class="table table-bordered" >
+			<tr ng-repeat="track in community.tracks">
+				<td>{{track.title}}</td>
+			</tr>
+		</table>
+	</div>
+	<div class="col-sm-3">
+		<h4>Sources</h4>
+		<div ng-repeat="source in community.sources">{{source.title}}</div>
+		<div ng-hide="community.sources.length > 0">No Sources Found</div>
+	</div>
+</div>

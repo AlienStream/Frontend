@@ -36,13 +36,13 @@ navback {
 }
 
 .center_content {
-	display:inline-block;
-	width:100%;
-	height:100%;
-	overflow:auto;
-	margin-right:-270px;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	margin-right: -270px;
 	padding: 0 10px;
-	padding-right:280px;
+	padding-right: 280px;
+	position: absolute;
 }
 
 .top_bar {
@@ -200,6 +200,13 @@ navback {
 	}
 }
 
+.community_list {
+	img {
+		text-align: center;
+		height: 125px;
+	}
+}
+
 .community_tracks {
 	.tracklist {
 		padding: 0;
@@ -274,10 +281,11 @@ navback {
 
 .community_header {
 	background: linear-gradient( 135deg, #034B5B, #16BFFF );
-	height: 270px;
+	height: 315px;
 	margin-left: -10px;
 	margin-right: -10px;
 	position: relative;
+	z-index: 5;
 
 	h1,h2,h3,h4,h5 {
 		margin: 0;
@@ -294,12 +302,71 @@ navback {
 	}
 
 	.action_bar {
-		background: rgba(255,255,255,.2);
+		background: #fafafa;
+		border-bottom: 1px solid #b3b9bc;
 		position: absolute;
 		bottom: 0;
 		left: 0;
 		right: 0;
-		padding: 5px;
+		padding: 20px;
 		text-align: right;
 	}
+
+	navback {
+		float: left;
+		padding: 5px;
+
+		a {
+			color: white;
+		}
+	}
+}
+
+.community_content {
+	height: 100%;
+	margin-top: -320px;
+	padding-top: 320px;
+
+	.tracklist {
+		padding: 20px;
+		height: 100%;
+		overflow: auto;
+
+		/* customize scrollbar css */
+		&::-webkit-scrollbar{
+			width:12px;
+			background-color:#cccccc;
+		}
+
+		&::-webkit-scrollbar:horizontal{
+			height:12px;
+		}
+
+		&::-webkit-scrollbar-track{
+			border:1px #787878 solid;
+			border-radius:10px;
+			-webkit-box-shadow:0 0 6px #C8C8C8 inset;
+		}
+
+		&::-webkit-scrollbar-thumb{
+			background-color:#B03C3F;
+			border:1px solid #000000;
+			border-radius:16px;
+		}
+
+		&::-webkit-scrollbar-thumb:hover{
+			background-color:#BF4649;
+			border:1px solid #333333;
+		}
+
+		&::-webkit-scrollbar-thumb:active{
+			background-color:#A6393D;
+			border:1px solid #333333;
+		}
+
+	}
+}
+
+.form-horizontal {
+	max-width: 600px;
 }

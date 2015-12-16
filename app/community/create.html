@@ -2,7 +2,6 @@
 <navback></navback>
 <form class="form-horizontal">
 
-    <!-- Name input-->
     <div class="form-group">
         <label class="col-md-3 control-label" for="name">Name</label>
         <div class="col-md-9">
@@ -10,7 +9,6 @@
         </div>
     </div> 
 
-    <!-- Message body -->
     <div class="form-group">
         <label class="col-md-3 control-label" for="message">Description</label>
         <div class="col-md-9">
@@ -18,26 +16,13 @@
         </div>
     </div>
 
-    <!-- Name input-->
     <div class="form-group">
         <label class="col-md-3 control-label" for="name">Thumbnail</label>
         <div class="col-md-9">
-            <input id="name" name="name" type="file" placeholder="An Image Url" class="form-control" ng-model="thumbnail">
+            <input id="thumbnail" name="thumbnail" type="file" placeholder="An Image Url" class="form-control" ng-model="thumbnail">
         </div>
-    </div> 
+    </div>
 
-
-    <!-- Name input-->
-    <div class="form-group">
-        <label class="col-md-3 control-label" for="name">Sources</label>
-        <div class="col-md-9">
-            <input id="name" name="name" type="text" placeholder="One Source" class="form-control" ng-model="source">
-        </div>
-    </div> 
-
-
-
-    <!-- Form actions -->
     <div class="form-group">
         <div class="col-md-12 text-right">
             <button class="btn btn-primary btn-lg" ng-click="CreateCommunity()">Submit</button>
