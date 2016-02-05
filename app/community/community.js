@@ -72,6 +72,14 @@ angular.module('alienstreamApp')
 
                 $scope.community = community
             }
+
+            $scope.handleSortChange = function($event) {
+                sort = $event.target.id
+
+                api.get("community/"+community.name+"/tracks", sort).then(function(response) {
+                    $scope.community.tracks = response.data;
+                });
+            }
         }
     ]
 );

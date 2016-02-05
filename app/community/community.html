@@ -3,28 +3,34 @@
 		<h2 class="title">{{community.name}}</h2>
 		<h4 clsss="description">{{community.description}}</h4>
 	</div>
-	<div class="action_bar">
-		<navback></navback>
-		<select ng-init="playersort = AlienPlayer.sorts[2]" ng-model="playersort" ng-options = "sort.title for sort in AlienPlayer.sorts">
-		</select>
-
-		<button class="btn btn-primary" ng-click="AlienPlayer.load(community.name,playersort.val)">
-			Play Community
-		</button>
-	</div>
 </div>
 
 <div class="row community_content">
-	<div class="col-sm-9 tracklist">
-		<table class="table table-bordered" >
-			<tr ng-repeat="track in community.tracks">
-				<td>{{track.title}}</td>
-			</tr>
-		</table>
+	<div class="col-sm-2">
+		<ul class="sort-selection">
+			<li class="sort" ng-repeat="sort in AlienPlayer.sorts" ng-click="handleSortChange($event)" id="{{sort.val}}">{{sort.title}}</li>
+		</ul>
 	</div>
-	<div class="col-sm-3">
-		<h4>Sources</h4>
-		<div ng-repeat="source in community.sources">{{source.title}}</div>
-		<div ng-hide="community.sources.length > 0">No Sources Found</div>
+	<div class="col-sm-10 tracklist">
+
+		<div class="col-lg-3 col-md-4 col-sm-6 track_container">
+			<div class="overlay"  ng-href="#/app/community/{{community.name}}" style="background-image:url({{track.thumbnail ? track.thumbnail:'http://infinitelegroom.com/wp-content/uploads/2013/03/10-best-headphones-preview.png'}})"></div>
+			<a class="preview">
+				<div class="info">
+					<h3 class="title">Play All Tracks</h3>
+					<h4 class="description">{{track.channel.artist.name}}</h4>
+				</div>
+			</a>
+		</div>
+
+		<div class="col-lg-3 col-md-4 col-sm-6 track_container" ng-repeat="track in community.tracks">
+			<div class="overlay"  ng-href="#/app/community/{{community.name}}" style="background-image:url({{track.thumbnail ? track.thumbnail:'http://infinitelegroom.com/wp-content/uploads/2013/03/10-best-headphones-preview.png'}})"></div>
+			<a class="preview">
+				<div class="info">
+					<h3 class="title">{{track.title}}</h3>
+					<h4 class="description">{{track.channel.artist.name}}</h4>
+				</div>
+			</a>
+		</div>
 	</div>
 </div>
