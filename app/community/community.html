@@ -8,7 +8,7 @@
 <div class="row community_content">
 	<div class="col-sm-2">
 		<ul class="sort-selection">
-			<li class="sort" ng-repeat="sort in AlienPlayer.sorts" ng-click="handleSortChange($event)" id="{{sort.val}}">{{sort.title}}</li>
+			<li ng-class="{active:(selectedSort == sort.val), sort: true}" ng-repeat="sort in AlienPlayer.sorts" ng-click="handleSortChange($event)" id="{{sort.val}}">{{sort.title}}</li>
 		</ul>
 	</div>
 	<div class="col-sm-10 tracklist">

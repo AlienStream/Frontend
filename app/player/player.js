@@ -58,6 +58,15 @@
 				});
 			}
 
+			this.loadSingle = function(track) {
+				AlienPlayer.current_playlist = {
+					"title": track.title,
+				}
+				AlienPlayer.playlist = [];
+				AlienPlayer.current_track = track;
+				AlienPlayer.current_track.state = "waiting";
+			}
+
 			this.prev = function() {
 				if(AlienPlayer.played.length !== 0 ) {
 					AlienPlayer.playlist.unshift(AlienPlayer.current_track);

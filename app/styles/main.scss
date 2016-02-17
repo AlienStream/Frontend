@@ -291,13 +291,13 @@ navback {
 }
 
 .sort {
+	cursor: pointer;
 	font-weight: 500;
 	font-size: 1.1em;
 	padding: 5px 0;
 
-	&:hover {
+	&:hover, &.active {
 		color: #3bafda;
-		cursor: pointer;
 	}
 }
 
