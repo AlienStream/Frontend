@@ -18,7 +18,6 @@
 			<a class="preview" ng-click="AlienPlayer.load(community.name,selectedSort)">
 				<div class="info">
 					<h3 class="title">Play All Tracks</h3>
-					<h4 class="description">{{track.channel.artist.name}}</h4>
 				</div>
 				<div class="play-button">
 					<i class="fa fa-5x fa-play-circle"></i>
@@ -28,9 +27,9 @@
 
 		<div class="col-lg-3 col-md-4 col-sm-6 track_container" ng-repeat="track in community.tracks">
 			<div class="overlay"  ng-href="#/app/community/{{community.name}}" style="background-image:url({{track.thumbnail ? track.thumbnail:'http://infinitelegroom.com/wp-content/uploads/2013/03/10-best-headphones-preview.png'}})"></div>
-			<a class="preview" ng-click="showTrack(track.id)" >
+			<a class="preview">
 				<div class="info">
-					<h3 class="title">{{track.title}}</h3>
+					<h3 class="title" ng-click="showTrack(track.id)" >{{track.title}}</h3>
 					<h4 class="description">{{track.channel.artist.name}}</h4>
 				</div>
 				<div class="play-button"  ng-click="AlienPlayer.loadSingle(track)">
