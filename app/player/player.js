@@ -32,8 +32,18 @@
 				AlienPlayer.current_track.state = "resuming";
 			}
 
+			this.favoriteToggle = function() {
+				if (AlienPlayer.current_track.favorited) {
+					AlienPlayer.current_track.favorited = false;
+					api.delete("track/" + AlienPlayer.current_track.id + "/favorite", []);
+				} else {
+					AlienPlayer.current_track.favorited = true;
+					api.post("track/" + AlienPlayer.current_track.id + "/favorite", []);
+				}
+			}
+
 			this.next = function() {
-				if(AlienPlayer.playlist.length !== 0 ) {
+				if(AlienPlayer.playlist.length !== 0) {
 					AlienPlayer.played.push(AlienPlayer.current_track);
 					AlienPlayer.current_track = AlienPlayer.playlist.shift();
 					AlienPlayer.current_track.state = "waiting";
@@ -53,6 +63,15 @@
 				api.get("community/"+sub+"/tracks",sort).then(function(response) {
 					AlienPlayer.playlist = response.data
 					AlienPlayer.played.push(AlienPlayer.current_track);
+
+					AlienPlayer.playlist.filter(function(value, key, playlist) {
+						if (value.flagged) {
+							return false;
+						}
+
+						return true;
+					});
+
 					AlienPlayer.current_track = AlienPlayer.playlist.shift();
 					AlienPlayer.current_track.state = "waiting";
 				});

@@ -1,0 +1,40 @@
+<h3 class="content_title" ng-show="favorites.communities.length > 0" style="display: inline-block;">Favorited Communities</h3>
+
+<div class="community_list row">
+    <div class="col-lg-3 col-md-4 col-sm-6" ng-repeat="community in favorites.communities | orderBy:FavoriteCount">
+        <a class="preview" ng-href="#/app/community/{{community.name}}">
+            <img src="{{community.thumbnail ? community.thumbnail:'http://infinitelegroom.com/wp-content/uploads/2013/03/10-best-headphones-preview.png'}}">
+            <div class="info">
+                <h3 class="title">{{community.name}}</h3>
+                <h4 class="description">{{community.description}}</h4>
+            </div>
+        </a>
+    </div>
+    <div ng-show="show_create" class="col-lg-3 col-md-4 col-sm-6">
+        <a class="preview"  ng-href="#/app/create/community">
+            <img src="http://placehold.it/300x125">
+            <div class="info">
+                <h3 class="title">Create A New Community</h3>
+                <h4 class="description">Add Multiple Sources or Whatever</h4>
+            </div>
+        </a>
+    </div>
+</div>
+
+
+<h3 class="content_title" ng-show="favorites.tracks.length > 0"  style="display: inline-block;">Favorited Tracks</h3>
+
+<div class="tracklist">
+    <div class="col-lg-3 col-md-4 col-sm-6 track_container" ng-repeat="track in favorites.tracks">
+        <div class="overlay" style="background-image:url({{track.thumbnail ? track.thumbnail:'http://infinitelegroom.com/wp-content/uploads/2013/03/10-best-headphones-preview.png'}})"></div>
+        <a class="preview">
+            <div class="info">
+                <h3 class="title" ng-click="showTrack(track.id)" >{{track.title}}</h3>
+                <h4 class="description">{{track.channel.artist.name}}</h4>
+            </div>
+            <div class="play-button"  ng-click="AlienPlayer.loadSingle(track)">
+                <i class="fa fa-5x fa-play-circle"></i>
+            </div>
+        </a>
+    </div>
+</div>

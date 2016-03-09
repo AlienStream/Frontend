@@ -26,14 +26,14 @@
 	</div>
 </div>
 
-<div style="text-align:center; width: 95%; margin: 20px auto;">
+<div style="text-align:center; width: 95%; margin: 20px auto;" class="control-toggles">
 	<div style="width:25%;float:left;">
-		<a style="cursor:pointer;" ng-click="AlienPlayer.favoriteToggle()">
+		<a style="cursor:pointer;" ng-click="AlienPlayer.favoriteToggle()" ng-class="{favorited:AlienPlayer.current_track.favorited}">
 			<span style="padding:10px;" class="fa-large fa fa-heart"></span>
 		</a>
 	</div>
 	<div style="width:25%;float:left;">
-		<a style="cursor:pointer;" ng-click="AlienPlayer.toggleFlagMenu()">
+		<a style="cursor:pointer;" ng-click="AlienPlayer.toggleFlagMenu()" ng-class="{flagged:AlienPlayer.current_track.flagged}">
 			<span style="padding:10px;" class="fa-large fa fa-flag"></span>
 		</a>
 	</div>

@@ -50,6 +50,16 @@ angular
         }  
       })
 
+      .state('app.myfavorites', {
+        url: '/favorites', 
+        views: {
+          "content@app": {
+            templateUrl: 'user/favorites_page.html',
+            controller: 'FavoritesCtrl'
+          }
+        }  
+      })
+
       .state('app.community', {
         url: '/community/:community_name',
         views: {

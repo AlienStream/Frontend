@@ -34,7 +34,6 @@ angular.
  					})
  					.error(function(result){
  						differed.reject(result);
- 						user.clearUser();
  					})
  				return differed.promise;
  			}
@@ -47,7 +46,18 @@ angular.
  						differed.resolve(result);
  					})
  					.error(function(result){
- 						user.clearUser();
+ 						differed.reject(result);
+ 					})
+ 				return differed.promise;
+ 			}
+
+ 			this.delete = function(url, data) {
+ 				var differed = $q.defer();
+ 				$http.delete(base_url+url, {withCredentials: true})
+ 					.success(function(result){
+ 						differed.resolve(result);
+ 					})
+ 					.error(function(result){
  						differed.reject(result);
  					})
  				return differed.promise;
