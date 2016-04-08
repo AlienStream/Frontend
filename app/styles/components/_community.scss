@@ -1,0 +1,135 @@
+.community_header {
+	background: linear-gradient( 135deg, #034B5B, #16BFFF );
+	height: 135px;
+	margin-left: -10px;
+	margin-right: -10px;
+	position: relative;
+	z-index: 5;
+
+	h1,h2,h3,h4,h5 {
+		margin: 0;
+	}
+
+	.info {
+		color: white;
+		padding-top: 30px;
+		padding-left: 25px;
+
+		h2 {
+			margin-bottom: .3em;
+		}
+	}
+
+	.action_bar {
+		background: #fafafa;
+		border-bottom: 1px solid #b3b9bc;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		padding: 20px;
+		text-align: right;
+	}
+
+	navback {
+		float: left;
+		padding: 5px;
+
+		a {
+			color: white;
+		}
+	}
+}
+
+
+.community_content {
+	height: 100%;
+	margin-top: -120px;
+	padding-top: 120px;
+
+	.tracklist {
+		padding: 20px 0;
+		height: 100%;
+		overflow: auto;
+
+		/* customize scrollbar css */
+		&::-webkit-scrollbar{
+			width: 0px;
+			height: 0px;
+		}
+
+		&::-webkit-scrollbar:horizontal{
+		}
+
+		&::-webkit-scrollbar-track{
+		}
+
+		&::-webkit-scrollbar-thumb{
+		}
+
+		&::-webkit-scrollbar-thumb:hover{
+		}
+
+		&::-webkit-scrollbar-thumb:active{
+		}
+
+	}
+}
+
+.sort-selection {
+	margin-left: 0;
+	list-style: none;
+	padding: 20px 10px;
+}
+
+.sort {
+	cursor: pointer;
+	font-weight: 500;
+	font-size: 1.1em;
+	padding: 5px 0;
+
+	&:hover, &.active {
+		color: #3bafda;
+	}
+}
+
+.current_community {
+	position: absolute;
+	bottom: 0px;
+	padding: 10px;
+	width: 100%;
+	border-top: 1px solid lightgray;
+
+	ul {
+		margin:0px;
+		padding:0px;
+	}
+
+
+	.expand {
+		position:absolute;
+		right: 25px;
+		bottom: 15px;
+	}
+}
+
+.community_list {
+	img {
+		text-align: center;
+		height: 125px;
+	}
+}
+
+.community_tracks {
+	.tracklist {
+		padding: 0;
+		li {
+			margin: 0;
+			height: 3em;
+  			border-bottom: 1px solid #EDEDED;
+		}
+	}
+}
+
+
+
